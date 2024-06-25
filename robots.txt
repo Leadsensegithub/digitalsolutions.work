@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /ads.txt
+Crawl-delay:3
+Sitemap:http://digital-solutions.work/sitemap.xml

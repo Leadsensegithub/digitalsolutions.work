@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API Example with Inputs</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Fetch API Example with Inputs</h1>
+        <p>This page demonstrates using the Fetch API to make a POST request with user inputs.</p>
+
+        <form id="leadForm">
+            <div class="form-group">
+                <label for="sku">SKU:</label>
+                <input type="text" class="form-control" id="sku" name="sku" required>
+            </div>
+
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" class="form-control" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone2">Phone 2:</label>
+                <input type="text" class="form-control" id="phone2" name="phone2">
+            </div>
+
+            <div class="form-group">
+                <label for="clickID">Click ID:</label>
+                <input type="text" class="form-control" id="clickID" name="clickID" required>
+            </div>
+
+            <div class="form-group">
+                <label for="publishID">Publish ID:</label>
+                <input type="text" class="form-control" id="publishID" name="publishID" required>
+            </div>
+
+            <div class="form-group">
+                <label for="baseURL">Base URL:</label>
+                <input type="text" class="form-control" id="baseURL" name="baseURL" required>
+            </div>
+
+            <div class="form-group">
+                <label for="clientIP">Client IP:</label>
+                <input type="text" class="form-control" id="clientIP" name="clientIP" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.getElementById("leadForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Get form data
+        const formData = new FormData(this);
+
+        // Convert form data to JSON
+        const jsonData = {};
+        formData.forEach(function(value, key) {
+            jsonData[key] = value;
+        });
+
+        // First API Request
+        const firstApiHeaders = new Headers();
+        firstApiHeaders.append("Content-Type", "application/json");
+
+        const firstApiRequestOptions = {
+            method: "POST",
+            headers: firstApiHeaders,
+            body: JSON.stringify(jsonData),
+            redirect: "follow"
+        };
+
+        fetch("https://digital-solutions.work/api/restapi/leades.php", firstApiRequestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.error(error));
+
+        // Second API Request
+        const secondApiHeaders = new Headers();
+        secondApiHeaders.append("username", "abraham@ad-traffic.biz");
+        secondApiHeaders.append("password", "adtraffic4api@2024");
+        secondApiHeaders.append("Content-Type", "application/json");
+
+        const secondApiRequestOptions = {
+            method: "POST",
+            headers: secondApiHeaders,
+            body: JSON.stringify(jsonData), // Reusing the same jsonData object
+            redirect: "follow"
+        };
+
+        fetch("https://lms.telmarksrv.com/api/leads/v2/add", secondApiRequestOptions)
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.error(error));
+    });
+</script>
+
+
+
+</body>
+</html>
